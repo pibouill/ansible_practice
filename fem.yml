@@ -21,3 +21,11 @@
 
     - name: clone dotfiles
       shell: git clone https://github.com/pibouill/dotfiles.git ~/.config/dotfiles
+
+    - name: Install node
+      apt:
+        name: ['nodejs', 'npm']
+    - name: Install n
+      npm: name=n
+    - name: n 14
+      shell: n 14
