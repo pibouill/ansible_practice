@@ -1,7 +1,7 @@
-#!/usr/bin/bash
+#!/bin/bash
 
-languages=$(echo "bash golang c cpp" | tr ' ' '\n')
-core_utils=$(echo "find xargs sed awk" | tr ' ' '\n')
+languages=$(echo "bash golang c cpp" | tr " " "\n")
+core_utils=$(echo "find xargs sed awk" | tr " " "\n")
 selected=$(echo -e "$languages\n$core_utils" | fzf)
 
 
@@ -13,7 +13,7 @@ fi
 read -p "GIMMIE QUERY: " query
 
 if echo "$languages" | grep -qs $selected; then
-	tmux split-window -h bash -c "curl cht.sh/$selected/$(echo $query | tr ' ' '+') | less"
+	tmux split-window -h bash -c "curl cht.sh/$selected/$(echo $query | tr " " "+")?T | less -R"
 else
-	tmux split-window -h bash -c "curl cht.sh/$selected~$query | less"
+	tmux split-window -h bash -c "curl cht.sh/$selected~$query?T | less -R"
 fi
